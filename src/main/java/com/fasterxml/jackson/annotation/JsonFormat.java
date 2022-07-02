@@ -73,6 +73,11 @@ public @interface JsonFormat
      * to further refine formatting aspects. This may, for example, determine
      * low-level format String used for {@link java.util.Date} serialization;
      * however, exact use is determined by specific <code>JsonSerializer</code>
+     * 可以使用的特定于数据类型的附加配置
+      *进一步细化格式方面。 例如，这可以确定
+      * 用于 {@link java.util.Date} 序列化的低级格式字符串；
+      * 但是，具体使用由特定的 <code>JsonSerializer</code> 决定
+     *pattern: 表示日期的格式
      */
     public String pattern() default "";
 
@@ -116,6 +121,7 @@ private Long aliyunOssFileId;
      * can be used to mean "just use the default", where default is specified
      * by the serialization context, which in turn defaults to system
      * default (UTC) unless explicitly set to another timezone.
+     * 默认是GMT，中国需要GMT+8
      */
     public String timezone() default DEFAULT_TIMEZONE;
 
