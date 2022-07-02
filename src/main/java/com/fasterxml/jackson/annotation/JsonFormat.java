@@ -81,6 +81,22 @@ public @interface JsonFormat
      * but usually has straight-forward counterpart in data format (JSON).
      * Note that commonly only a subset of shapes is available; and if 'invalid' value
      * is chosen, defaults are usually used.
+     *
+     * 用于序列化的结构：映射的定义取决于数据类型，
+      * 但通常具有直接对应的数据格式 (JSON)。
+      * 请注意，通常只有一部分形状可用； 如果“无效”值
+      * 被选中，通常使用默认值。
+      *shap: 表示序列化后的一种类型.
+      * 比如说 后端 生成的 17位的long类型的对象 如果直接返回给前端，前端 js long类型存在精度丢失的问题， 因此
+     * 这个时候后端对于这种long类型一般会设置为 序列化时转为string类型
+     *我后端是用的雪花算法生成的20位的唯一ID，我返回给前端的时候，例如：
+    我返回的是Long类型的，但是前端接收之后精度丢失，导致和我后端给的不一致，解决办法就是使用String类型的。
+后端传输JSON格式化为String类型的。
+@JsonFormat(shape = JsonFormat.Shape.STRING)
+private Long aliyunOssFileId;
+@JsonFormat(shape = JsonFormat.Shape.STRING)作用就是将JSON数据的此字段格式化为字符串类型，保证前端超过17位不会出现精度丢失问题！
+     
+     *
      */
     public Shape shape() default Shape.ANY;
 
